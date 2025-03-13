@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="it">
+  <head>
+    <meta charset="UTF-8" />
+    <title>My todo list</title>
+    <link rel="stylesheet" href="todo-app-assignments.css" />
+  </head>
+  <body>
+    <div class="main">
+      <h1>TODO App with assignments</h1>
+      <div class="header" role="form">
+        <div class="header__add-todo">
+        <input type="text" id="text-todo" />
+        <button id="btn-add-todo">Add TODO</button>
+      </div>
+      <ul id="todo-list"></ul>
+      <div class="header__all-assigments">
+      <h2>Array and Loops</h2>
+      <div class="header__assignments loop-assignments">
+          <button id="btn-delete-last-added">Delete last added task</button>
+          <button id="btn-reverse-todo">Reverse</button>
+          <button id="btn-hide-done">Show only open tasks</button>
+          <button id="btn-show-done-last">Show completed tasks at the bottom</button>
+          <button id="btn-mark-all-as-done">Mark all as done</button>
+          <button id="btn-mark-all-as-not-done">Mark all as NOT done</button>
+          <button id="btn-show-only-short-tasks">Show only short tasks</button>
+
+      </div>
+      <h2>Array and Iterators</h2>
+      <div class="header__assignments iterator-assignments">
+          <button id="btn-show-open-iterators">Show only open tasks</button>
+          <button id="btn-add-idx-to-task-iterators">Add index to task</button>
+          <button id="btn-count-completed-iterators">Count completed</button>
+          <button id="btn-print-description-iterators">Print Description</button>
+          <button id="btn-show-only-short-tasks-iterators">Show only short tasks</button>
+          <button id="btn-calc-stats">Calculate statistics</button>
+      </div>
+      <label id="lbl-footer-text">write stats here</label>
+      </div>
+    </div>
+    </div>
+    <script src="todo-app-assignments.js"></script>
+  </body>
+</html>
