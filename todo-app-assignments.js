@@ -215,12 +215,13 @@ function onShowOnlyShortTasks() {
   // 3. Print the short tasks to the console.
 
   for (let i = 0; i < todoList.length; i++) {
-    if (todoList[i].textTodo.length < 10) {
-      todoList.pop();// Push to new array if text is less than 10 chars
+    if (todoList[i].textTodo.length >= 10) {
+       delete todoList[i];// Push to new array if text is less than 10 chars
 
   }
+  refreshTodolistElements();
 
-  console.log("Todos: ", todoList()); // Print the short tasks to the console
+  console.log("Todos: ", todoList); // Print the short tasks to the console
   }
 }
 
@@ -230,10 +231,14 @@ function onShowOnlyShortTasks() {
 // --------------------------------------------------------------
 
 function onShowOpenTasksIterator() {
-  console.log("Iterators: Show only open tasks using iterators");
+  console.log("Show only open tasks using iterators");
+  const openTasks = todoList.filter(task => !task.done);
   // write your code here below...
-  // 1. Use the filter() method to create a new array containing only tasks where 'done' is false.
-  // 2. Print the filtered array to the console.
+  // 1. Use the filter() method to create a new array containing only the open tasks.
+  // 2. Print the new array to the console
+  refreshTodolistElements();
+  console.log("Open tasks: ", openTasks);
+  
 }
 
 function onAddIndexToDescriptionsIterator() {
@@ -242,6 +247,9 @@ function onAddIndexToDescriptionsIterator() {
   // 1. Use the map() method to create a new array where each task's description is modified to include its index.
   // 2. Print the new array to the console.
   // example: "0: Buy groceries", "1: Clean the house"
+  const indexedTasks = todoList.map((task, index) => `${index}: ${task.text}`);
+  console.log("Indexed tasks: ", indexedTasks);
+  refreshTodolistElements();
 }
 
 function onCountCompletedTasksIterator() {
@@ -270,6 +278,7 @@ function onShowOnlyShortTasksIterator() {
 
 function onCalcStatsClick() {
   console.log("Calculate and display all your task statistics")
+
   // Calculate and display statistics like:
   // - total number of tasks
   // - number of completed tasks
@@ -288,9 +297,18 @@ function onCalcStatsClick() {
   // 1. reimplement this logic using reduce()
   // 2. print first the result to console.log
   // 2. then show the stats in the DOM using footerTextElem ... innerText
+let numberOfTasks = 0;
+let completedTasks = 0;
+
+  for (let i = 0; i < todoList.length; i++) {
+    numberOfTasks++; // 2.1 Increment total tasks
+    if (todoList[i].done) {
+        completedTasks++; // 2.2 Increment completed tasks
+    }
 }
+console.log("Total tasks:", numberOfTasks);
+console.log("Completed tasks:", completedTasks);
 
-
-
-console.log(">>> LOADED todo-app.js");
+footerTextElem.innerText = `Total tasks: ${numberOfTasks}, Completed tasks: ${completedTasks}`;
+}
 
