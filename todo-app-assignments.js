@@ -91,11 +91,14 @@ todoInputElem.focus();
 
 function onDeleteLastAddedItem() {
   console.log("delete last added item");
+  todoList.pop(); // Remove the last item from the array
   const list = document.getElementById("todo-list"); // Get the unordered list
   if (list.lastElementChild) { 
       list.removeChild(list.lastElementChild); // Remove the last added item
   }
-
+  for(let i = 0; i < todoList.length; i++) {
+  console.log("Todos: ", todoList[i]); // Print the updated list to the console
+  }
 }
 
 function onReverseBtnClick() {
@@ -103,16 +106,31 @@ function onReverseBtnClick() {
   // write your code here below...
   // 1. use the array function reverse()
   // 2. print the list of the items to the console using a "while" loop
+  const list = document.getElementById("todo-list");
+    const items = Array.from(list.children);
+    list.innerHTML = ""; // Clear the list
+    items.reverse().forEach(item => list.appendChild(item)); 
 
 }
 
 function onHideDoneTaskElemClick() {
   console.log("hide completed tasks");
   // write your code here below...
+
   // 1. print the list of NOT completed tasks using the "for .. of" loop
   // https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/for...of
+    let filteredTasks = [];
+    
+    for (const task of todoList) {
+        if (!task.completed) {
+            filteredTasks.push(task);
+        }
+    }
 
+    return filteredTasks;
 }
+
+
 
 function onShowDoneAtTheBottomClick() {
   console.log("Show completed tasks at the bottom")
