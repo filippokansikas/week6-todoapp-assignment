@@ -155,8 +155,31 @@ function onShowDoneAtTheBottomClick() {
         console.log(task); // Print the incomplete tasks to the console
     }
   }
+  for (const task of todoList) {
+    if (task.done) {
+      let index = todoList.indexOf(task);
+
+        console.log(task); // Print the complete tasks to the console
+    }
+    const list = document.getElementById('todo-list'); // Get the unordered list
+    const items = Array.from(list.children); // Get all list items as an array
+  
+    // Filter out the checked items and the unchecked ones
+    const checkedItems = items.filter(item => item.querySelector('input').checked);
+    const uncheckedItems = items.filter(item => !item.querySelector('input').checked);
+  
+    // Clear the list
+    list.innerHTML = '';
+  
+    // Append the unchecked items first
+    uncheckedItems.forEach(item => list.appendChild(item));
+  
+    // Append the checked items next
+    checkedItems.forEach(item => list.appendChild(item));
+  }
 }
   // 2. loop again over the tasks and print the completed ones
+
   
 
 function onMarkAllAsDoneClick() {
@@ -165,12 +188,22 @@ function onMarkAllAsDoneClick() {
   // 1. loop over all the tasks and update the "done" property to "true"
   // 2. print the todoList array to console using
   //    console.log("Todos: ", todoList);   // NOTE the use of the comma "," instead of the plus "+"
+  for (let i = 0; i < todoList.length; i++) {
+    todoList[i].done = true;
+  }
+  refreshTodolistElements();
+  console.log("Todos: ", todoList);
 
 }
 
 function onMarkAllAsNotDoneClick() {
   console.log("Mark all task as NOT done")
   // write your code here below...
+  for (let i = 0; i < todoList.length; i++) {
+    todoList[i].done = false;
+  }
+  refreshTodolistElements();
+  console.log("Todos: ", todoList);
 
 }
 
@@ -180,6 +213,15 @@ function onShowOnlyShortTasks() {
   // 1. Use a for loop to iterate through the todoList array.
   // 2. Inside the loop, use the continue keyword to skip tasks with descriptions longer than 10 characters.
   // 3. Print the short tasks to the console.
+
+  for (let i = 0; i < todoList.length; i++) {
+    if (todoList[i].textTodo.length < 10) {
+      todoList.pop();// Push to new array if text is less than 10 chars
+
+  }
+
+  console.log("Todos: ", todoList()); // Print the short tasks to the console
+  }
 }
 
 
