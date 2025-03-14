@@ -110,24 +110,37 @@ function onReverseBtnClick() {
     const items = Array.from(list.children);
     list.innerHTML = ""; // Clear the list
     items.reverse().forEach(item => list.appendChild(item)); 
+    todoList.reverse()
+    let i = 0;
+    while (i < todoList.length){
+      console.log(todoList[i]);
+      i++;
+    }
 
 }
 
 function onHideDoneTaskElemClick() {
   console.log("hide completed tasks");
+  let filteredTasks = [];
+
+  for (const task of todoList) {
+      if (!task.done) {
+          filteredTasks.push(task); // Keep only incomplete tasks
+      }
+      
+  }
+
+  console.log("Todos: ", filteredTasks); // Print the filtered list to the console
+  return filteredTasks;
   // write your code here below...
 
   // 1. print the list of NOT completed tasks using the "for .. of" loop
   // https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/for...of
-    let filteredTasks = [];
-    
-    for (const task of todoList) {
-        if (!task.completed) {
-            filteredTasks.push(task);
-        }
-    }
+  
+  
+  
+ // Return a new array without completed tasks
 
-    return filteredTasks;
 }
 
 
@@ -137,9 +150,14 @@ function onShowDoneAtTheBottomClick() {
   // Completed tasks show be shown at the bottom of the list
   // write your code here below...
   // 1. loop over the tasks and print only the not completed
-  // 2. loop again over the tasks and print the completed ones
-
+  for (const task of todoList) {
+    if (!task.done) {
+        console.log(task); // Print the incomplete tasks to the console
+    }
+  }
 }
+  // 2. loop again over the tasks and print the completed ones
+  
 
 function onMarkAllAsDoneClick() {
   console.log("Mark all task as done")
