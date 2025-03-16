@@ -292,9 +292,7 @@ function onShowOnlyShortTasksIterator() {
   // 3. use map() to create an array of only the description of the remaining tasks.
   // 4. print the array of description.
   const openTasks = todoList.filter(task => task.done === false);
-    console.log("Open tasks:", openTasks);
-    const shortOpenTasks = openTasks.filter(task => task.textTodo.length < 10);
-console.log("Short and open tasks:", shortOpenTasks);
+  const shortOpenTasks = openTasks.filter(task => task.textTodo.length < 10);
 const shortOpenTaskDescriptions = shortOpenTasks.map(task => task.textTodo);
 console.log("Descriptions of short and open tasks:", shortOpenTaskDescriptions);
 
