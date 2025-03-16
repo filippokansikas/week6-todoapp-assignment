@@ -272,8 +272,8 @@ function onPrintTaskDescriptionsIterator() {
     // 1. Use forEach() to iterate through the todoList array
     todoList.forEach((task, index) => {
         // 2. Check if task.text exists to avoid undefined values
-        if (task.text !== undefined) {
-            console.log(`${index + 1}. ${task.text}`); // ✅ FIXED: Corrected from `task.textTodo` to `task.text`
+        if (task.textTodo !== undefined) {
+            console.log(`${index}. ${task.textTodo}`);
         } else {
             console.warn(`Warning: Task at index ${index} has no 'text' property.`);
         }
@@ -291,14 +291,13 @@ function onShowOnlyShortTasksIterator() {
   // 2. Use filter() again to filter out the short tasks.
   // 3. use map() to create an array of only the description of the remaining tasks.
   // 4. print the array of description.
-  const shortOpenTaskDescriptions = todoList
-  .filter(task => task.done === "false")
-  .filter(task => task.textTodo.length < 10)
-  .map(task => task.textTodo);
+  const openTasks = todoList.filter(task => task.done === false);
+    console.log("Open tasks:", openTasks);
+    const shortOpenTasks = openTasks.filter(task => task.textTodo.length < 10);
+console.log("Short and open tasks:", shortOpenTasks);
+const shortOpenTaskDescriptions = shortOpenTasks.map(task => task.textTodo);
+console.log("Descriptions of short and open tasks:", shortOpenTaskDescriptions);
 
-console.log(shortOpenTaskDescriptions);
-refreshTodolistElements();
-console.log("Short open tasks: ", shortOpenTaskDescriptions);
 }
 
 function onCalcStatsClick() {
