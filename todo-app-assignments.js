@@ -319,7 +319,7 @@ function onCalcStatsClick() {
   // 1. reimplement this logic using reduce()
   // 2. print first the result to console.log
   // 2. then show the stats in the DOM using footerTextElem ... innerText
-let numberOfTasks = 0;
+/*let numberOfTasks = 0;
 let completedTasks = 0;
 
   for (let i = 0; i < todoList.length; i++) {
@@ -331,6 +331,32 @@ let completedTasks = 0;
 console.log("Total tasks:", numberOfTasks);
 console.log("Completed tasks:", completedTasks);
 
-footerTextElem.innerText = `Total tasks: ${numberOfTasks}, Completed tasks: ${completedTasks}`;
+footerTextElem.innerText = `Total tasks: ${numberOfTasks}, Completed tasks: ${completedTasks}`;*/
+// Step 1: Reimplement the logic using reduce()
+const stats = todoList.reduce(
+  (accumulator, currentTask) => {
+    // Increment the total number of tasks
+    accumulator.total++;
+
+    // If the task is completed, increment the completed tasks count
+    if (currentTask.done) {
+      accumulator.completed++;
+    }
+
+    return accumulator;
+  },
+  { total: 0, completed: 0 } // Initial value for the accumulator
+);
+
+// Step 2: Print the result to the console
+console.log(`Total number of tasks: ${stats.total}`);
+console.log(`Number of completed tasks: ${stats.completed}`);
+
+// Step 3: Show the stats in the DOM using footerTextElem
+// Assuming there is an element with id="footerText" in the HTML
+const footerTextElem = document.getElementById("lbl-footer-text");
+if (footerTextElem) {
+  footerTextElem.innerText = `Total Tasks: ${stats.total}, Completed Tasks: ${stats.completed}`;
+}
 }
 
